@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Licensing X-Callback Test</title>
+</head>
+<body>
+    <style>
+        .form-control label {
+            display: block;
+            line-height: 2em;
+        }
+        .form-control input {
+            width: 100%;
+            line-height: 3em;
+            padding: 0 1em;
+            box-sizing: border-box;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 2em;
+            background-color: #F1F1F1;
+        }
+    </style>
+    <form>
+        <div class="form-control">
+            <label for="email">E-Mail:</label>
+            <input type="email" name="email" id="email" value="john@johndoe.com" />
+        </div>
+        <div class="form-control">
+            <label for="licence">Licence Key:</label>
+            <input type="text" name="licence" id="licence" value="mvuMkeHqGUEMB8cMXfJMw439kcui" />
+        </div>
+    </form>
+    <div class="output">
+        <div class="markup"><pre id="code"></pre></div>
+        <div id="links"></div>
+    </div>
+
+    <script>
+        let $email = document.getElementById("email");
+        let $licence = document.getElementById("licence");
+        let $code = document.getElementById("code");
+        let $links = document.getElementById("links");
+
+        function _change() {
+            const $link = `<a href="cti://activate?mode=activate&licence=${$licence.value}&email=${$email.value}">Licence Me!</a>`;
+            $code.innerText = $link;
+            $links.innerHTML = $link;
+        }
+        $email.addEventListener("keyup", _change);
+        $licence.addEventListener("keyup", _change);
+        _change();
+    </script>
+
+</body>
+</html>
